@@ -1,0 +1,22 @@
+{{ ansible_managed | comment }}
+
+[commands]
+upgrade_type = {{ wtd_sys_auto_update_conf_cmd.update_type | default('default') }}
+download_updates = {{ wtd_sys_auto_update_conf_cmd.download_updates | default('yes') }}
+apply_updates = {{ wtd_sys_auto_update_conf_cmd.apply_updates | default('yes') }}
+random_sleep = {{ wtd_sys_auto_update_conf_cmd.random_sleep | default('360') }}
+
+[emitters]
+system_name = {{ wtd_sys_auto_update_conf_notify.system_name | default('') }}
+emit_via = {{ wtd_sys_auto_update_conf_cmd.emit_via | default('stdio') }}
+
+[email]
+email_from = {{ wtd_sys_auto_update_conf_cmd.email_from | default('root@localhost') }}
+email_to = {{ wtd_sys_auto_update_conf_cmd.email_to | default('root') }}
+email_host = {{ wtd_sys_auto_update_conf_cmd.email_host | default('localhost') }}
+
+[base]
+# This section overrides dnf.conf
+
+# Use this to filter DNF core messages
+debuglevel = 1

@@ -1,0 +1,38 @@
+---
+# meta file for while_true_do.sys_auto_update
+
+galaxy_info:
+  role_name: sys_auto_update
+  author: while-true-do.io
+  description: An Ansible Role to install and configure automatic updates.
+  license: BSD
+
+  min_ansible_version: 2.7
+
+  # Supported platforms: https://galaxy.ansible.com/api/v1/platforms/
+  # Please also maintain
+  # - molecule/default/molecule.yml
+  # - molecule/default/tests/*
+  # - .travis.yml
+  platforms:
+    - name: EL
+      versions:
+        - 7
+
+    - name: Fedora
+      versions:
+        - 29
+        - 30
+
+  galaxy_tags:
+    - automatic
+    - update
+    - package
+    - system
+    - patch
+    - upgrade
+    - cron
+    - timer
+    - schedule
+
+dependencies: []

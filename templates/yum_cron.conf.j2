@@ -1,0 +1,41 @@
+{{ ansible_managed | comment }}
+
+[commands]
+update_cmd = {{ wtd_sys_auto_update_conf_cmd.update_cmd | default('default') }}
+download_updates = {{ wtd_sys_auto_update_conf_cmd.download_updates | default('yes') }}
+apply_updates =  {{ wtd_sys_auto_update_conf_cmd.apply_updates | default('yes') }}
+random_sleep =  {{ wtd_sys_auto_update_conf_cmd.random_sleep | default('360') }}
+
+update_messages = yes
+
+[emitters]
+system_name =  {{ wtd_sys_auto_update_conf_cmd.update_messages | default('None') }}
+emit_via = {{ wtd_sys_auto_update_conf_cmd.emit_via | default('stdio') }}
+output_width = 80
+
+[email]
+email_from = {{ wtd_sys_auto_update_conf_cmd.email_from | default('root@localhost') }}
+email_to = {{ wtd_sys_auto_update_conf_cmd.email_to | default('root') }}
+email_host = {{ wtd_sys_auto_update_conf_cmd.email_host | default('localhost') }}
+
+[groups]
+# List of groups to update
+group_list = None
+
+# The types of group packages to install
+group_package_types = mandatory, default
+
+[base]
+# This section overrides yum.conf
+
+# Use this to filter Yum core messages
+# -4: critical
+# -3: critical+errors
+# -2: critical+errors+warnings (default)
+debuglevel = -2
+
+# skip_broken = True
+mdpolicy = group:main
+
+# Uncomment to auto-import new gpg keys (dangerous)
+# assumeyes = True

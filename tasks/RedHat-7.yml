@@ -1,0 +1,15 @@
+---
+# tasks file for while_true_do.sys_auto_update
+
+- name: "Manage Red Hat Optional Repository"
+  rhsm_repository:
+    name: "rhel-7-server-optional-rpms"
+    state: "{{ wtd_sys_yum_rh_optional_repo_state }}"
+  when:
+    - wtd_sys_yum_rh_optional_repo_state != "unmanaged"
+  become: true
+  tags:
+    - auto_update
+    - package
+    - security
+    - update

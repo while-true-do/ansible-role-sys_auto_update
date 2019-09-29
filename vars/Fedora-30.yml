@@ -1,0 +1,7 @@
+---
+# vars file for while_true_do.sys_auto_update
+
+wtd_sys_auto_update_package: "dnf-automatic"
+wtd_sys_auto_update_service: "dnf-automatic.timer"
+wtd_sys_auto_update_conf_src: "dnf_automatic.conf.j2"
+wtd_sys_auto_update_conf_dest: "/etc/dnf/automatic.conf"

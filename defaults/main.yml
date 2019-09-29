@@ -1,0 +1,31 @@
+---
+# defaults file for while_true_do.sys_auto_update
+
+## Package Management
+# Defaults are based on Fedora Linux
+wtd_sys_auto_update_package: "dnf-automatic"
+# State can be present|latest|absent
+wtd_sys_auto_update_package_state: "present"
+
+## Configuration Management
+wtd_sys_auto_update_conf_cmd:
+  # Can be default|security, depending on your distribution
+  update_type: "default"
+  download_updates: "yes"
+  apply_updates: "yes"
+  random_sleep: 360
+
+wtd_sys_auto_update_conf_notify:
+  # unset = use hostname
+  system_name: ""
+  # can be stdio|mail
+  notify_via: "stdio"
+  email_from: "root@localhost"
+  email_to: "root"
+  email_host: "localhost"
+
+## Service Management
+wtd_sys_auto_update_service: "dnf-automatic"
+# State can be started|stopped
+wtd_sys_auto_update_service_state: "started"
+wtd_sys_auto_update_service_enabled: true

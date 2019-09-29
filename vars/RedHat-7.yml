@@ -1,0 +1,7 @@
+---
+# vars file for while_true_do.sys_auto_update
+
+wtd_sys_auto_update_package: "yum-cron"
+wtd_sys_auto_update_service: "yum-cron"
+wtd_sys_auto_update_conf_src: "yum_cron.conf.j2"
+wtd_sys_auto_update_conf_dest: "/etc/yum/yum-cron.conf"

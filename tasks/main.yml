@@ -1,0 +1,65 @@
+---
+# tasks file for while_true_do.sys_auto_update
+
+- name: "Include distribution vars"
+  include_vars: "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+  tags:
+    - auto_update
+    - configuration
+    - package
+    - repository
+    - security
+    - service
+
+- name: "Include distribution tasks"
+  include_tasks: "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+  tags:
+    - auto_update
+    - configuration
+    - package
+    - repository
+    - security
+    - service
+
+- name: "Manage auto_update Packages"
+  package:
+    name: "{{ wtd_sys_auto_update_package }}"
+    state: "{{ wtd_sys_auto_update_package_state }}"
+  become: true
+  tags:
+    - auto_update
+    - package
+    - security
+    - update
+
+- name: "Manage auto_update Configuration"
+  template:
+    src: "{{ wtd_sys_auto_update_conf_src }}"
+    dest: "{{ wtd_sys_auto_update_conf_dest }}"
+    owner: "root"
+    group: "root"
+    mode: 0644
+  become: true
+  notify:
+    - Restart auto_update Service
+  when:
+    - wtd_sys_auto_update_package_state != "absent"
+  tags:
+    - auto_update
+    - configuration
+    - security
+    - update
+
+- name: "Manage auto_update Service"
+  service:
+    name: "{{ wtd_sys_auto_update_service }}"
+    state: "{{ wtd_sys_auto_update_service_state }}"
+    enabled: "{{ wtd_sys_auto_update_service_enabled }}"
+  become: true
+  when:
+    - wtd_sys_auto_update_package_state != "absent"
+  tags:
+    - auto_update
+    - security
+    - service
+    - update
