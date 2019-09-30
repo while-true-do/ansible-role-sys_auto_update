@@ -24,6 +24,11 @@ wtd_sys_auto_update_conf_notify:
   email_to: "root"
   email_host: "localhost"
 
+## Repository Management
+# Only for RedHat Systems
+# State can be present|absent|unmanaged
+wtd_sys_yum_rh_optional_repo_state: "present"
+
 ## Service Management
 wtd_sys_auto_update_service: "dnf-automatic"
 # State can be started|stopped
